@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Repowering Partners</title>
 <link rel="stylesheet" href="styles.css">
+
+<!--
+  FAVICON
+  The favicon is generated inline as an SVG data URI so no external file is needed.
+  It shows a white lightning bolt on a black circle — matches the brand.
+  If you want to use your own favicon file instead, replace the lines below with:
+  <link rel="icon" type="image/png" href="images/favicon.png">
+-->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230a0a0a'/%3E%3Cpolygon points='18,4 10,18 16,18 14,28 22,14 16,14' fill='%23f0f0f0'/%3E%3C/svg%3E">
+<link rel="alternate icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC3SURBVFhH7ZZBCsIwEEX7/06uXHoGD+DCjVsvIFjBpSAiIoiIiIh4ABFRQURERCQ0aaedJpNMIIT+B0NnXl7eZEhFSimllNqY2RUA8EMqZSIAcLc9nAEAt0opJQBIKeUAcLuVEgCklHIAuCillABwuZUSAKSUcgC4KKUEACmlHAAuSikBQEopB4CLUkoAkFLKAeCilBIApJRyALgopQQAKaUcAC5KKQFAVX0AuGEHgLmVUkoppZT6tjeQ1B8cKR8rqAAAAABJRU5ErkJggg==">
 </head>
 <body>
 
@@ -23,7 +33,9 @@
   <div class="nav-right">
     <button class="nav-btn-solid" onclick="showPage('contact')">Sell Asset</button>
     <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
-      <span></span><span></span><span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </div>
 </nav>
@@ -32,10 +44,13 @@
   <a onclick="showPage('home')">Home</a>
   <a onclick="showPage('about')">About</a>
   <a onclick="showPage('contact')">Contact</a>
-  <a onclick="showPage('contact')">Sell Asset</a>
+  <a onclick="showPage('contact')" class="mobile-nav-cta">Sell Asset</a>
 </div>
 
-<!-- ══ HOME PAGE ══ -->
+
+<!-- ══════════════════════════════
+     HOME PAGE
+══════════════════════════════ -->
 <div class="page active" id="page-home">
 
   <section class="hero">
@@ -89,17 +104,25 @@
   </section>
 
   <!--
-    IMAGE STRIP
-    To insert your images, find the three .strip-img divs below.
-    Inside each one, uncomment the <img> tag and set src to your image file.
-    Example: <img src="images/solar-farm-1.jpg" alt="Utility scale solar farm">
+    ══ IMAGE STRIP ══
+    To add your images, find the three .strip-img divs below.
+    Inside each one, uncomment the <img> tag and set src to your file path.
+
+    Example:
+      <img src="images/solar-farm-1.jpg" alt="Utility Scale Solar Farm">
+
+    The placeholder div will automatically hide once an <img> is present.
   -->
   <div class="hero-image-strip">
 
     <div class="strip-img">
-      <!-- <img src="images/YOUR-IMAGE-1.jpg" alt="Utility Scale Solar Farm"> -->
+      <img src="images/there.jpg" alt="Utility Scale Solar Farm">
       <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
         <span>Image 1 — Utility Scale</span>
       </div>
       <div class="strip-overlay"></div>
@@ -109,7 +132,11 @@
     <div class="strip-img">
       <!-- <img src="images/YOUR-IMAGE-2.jpg" alt="Commercial Solar Farm"> -->
       <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
         <span>Image 2 — Commercial</span>
       </div>
       <div class="strip-overlay"></div>
@@ -119,7 +146,11 @@
     <div class="strip-img">
       <!-- <img src="images/YOUR-IMAGE-3.jpg" alt="Ground Mount Solar"> -->
       <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
         <span>Image 3 — Ground Mount</span>
       </div>
       <div class="strip-overlay"></div>
@@ -127,6 +158,7 @@
     </div>
 
   </div>
+
 
   <!-- STATS -->
   <div class="stats-row">
@@ -143,6 +175,7 @@
       <div class="stat-lbl">Day Avg. Close</div>
     </div>
   </div>
+
 
   <!-- PROCESS -->
   <div class="section-header">
@@ -200,19 +233,24 @@
     </div>
   </div>
 
+
   <!-- WHY -->
   <div class="why-section">
     <div class="why-left" data-animate-left>
 
       <!--
         WHY SECTION IMAGE
-        Uncomment the <img> tag below and set src to your image file.
-        Example: <img src="images/YOUR-IMAGE-4.jpg" alt="Solar farm">
+        Uncomment and set src to your image file.
+        Example: <img src="images/YOUR-IMAGE-4.jpg" alt="Solar Farm">
       -->
       <div class="why-visual-img">
         <!-- <img src="images/YOUR-IMAGE-4.jpg" alt="Solar Farm"> -->
         <div class="img-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
           <span>Image 4 — Why Section</span>
         </div>
         <div class="why-visual-overlay">
@@ -228,6 +266,7 @@
         <span class="badge">All States</span>
       </div>
     </div>
+
     <div class="why-right">
       <div class="why-item" data-animate-right>
         <div class="wi-icon">
@@ -281,7 +320,8 @@
     </div>
   </div>
 
-  <!-- CTA -->
+
+  <!-- CTA BANNER -->
   <div class="cta-banner">
     <div>
       <div class="sh-eyebrow" style="margin-bottom:12px;">Ready to sell?</div>
@@ -305,7 +345,9 @@
 </div>
 
 
-<!-- ══ ABOUT PAGE ══ -->
+<!-- ══════════════════════════════
+     ABOUT PAGE
+══════════════════════════════ -->
 <div class="page" id="page-about">
 
   <div class="about-hero">
@@ -319,16 +361,20 @@
   </div>
 
   <!--
-    ABOUT IMAGE ROW
-    Uncomment and fill in src for each image below.
-    Example: <img src="images/YOUR-IMAGE-5.jpg" alt="Solar farm aerial">
+    ══ ABOUT IMAGE ROW ══
+    Uncomment each <img> tag and set src to your file.
+    Example: <img src="images/YOUR-IMAGE-5.jpg" alt="Solar Farm Aerial">
   -->
   <div class="about-img-row">
 
     <div class="about-img-cell">
       <!-- <img src="images/YOUR-IMAGE-5.jpg" alt="Solar Farm Aerial"> -->
       <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
         <span>Image 5 — About Left</span>
       </div>
     </div>
@@ -336,7 +382,11 @@
     <div class="about-img-cell">
       <!-- <img src="images/YOUR-IMAGE-6.jpg" alt="Solar Panels at Sunset"> -->
       <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
         <span>Image 6 — About Right</span>
       </div>
     </div>
@@ -421,7 +471,9 @@
 </div>
 
 
-<!-- ══ CONTACT PAGE ══ -->
+<!-- ══════════════════════════════
+     CONTACT PAGE
+══════════════════════════════ -->
 <div class="page" id="page-contact">
 
   <div class="contact-hero">
@@ -436,6 +488,7 @@
 
   <div class="contact-layout">
     <div class="contact-info">
+
       <div class="ci-card" data-animate-left>
         <div class="ci-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -448,6 +501,7 @@
           <p>Austin, TX 78701<br>United States</p>
         </div>
       </div>
+
       <div class="ci-card" data-animate-left>
         <div class="ci-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -460,6 +514,7 @@
           <a href="mailto:Jim.bakhaus@repoweringpartners.com">Jim.bakhaus@repoweringpartners.com</a>
         </div>
       </div>
+
       <div class="ci-card" data-animate-left>
         <div class="ci-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -471,6 +526,7 @@
           <p>+1 (800) 555-0192<br>Mon–Fri, 8am–6pm CT</p>
         </div>
       </div>
+
       <div class="ci-card" data-animate-left>
         <div class="ci-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -483,37 +539,38 @@
           <p>Within 24 business hours of your submission.</p>
         </div>
       </div>
+
     </div>
 
     <div class="contact-form-section" data-animate>
       <div class="cf-title">Tell Us About Your Farm</div>
       <p class="cf-sub">All information is kept strictly confidential. No obligation, no pressure. Responses go directly to Jim.bakhaus@repoweringpartners.com</p>
 
-      <form id="contactForm" onsubmit="handleSubmit(event)">
+      <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
         <div class="form-row">
           <div class="form-group">
-            <label>First Name</label>
-            <input type="text" placeholder="John" required>
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="John" required>
           </div>
           <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" placeholder="Smith" required>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="Smith" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="john@example.com" required>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@example.com" required>
           </div>
           <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" placeholder="+1 (555) 000-0000">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Farm State</label>
-            <select>
+            <label for="state">Farm State</label>
+            <select id="state">
               <option value="">Select state...</option>
               <option>California</option>
               <option>Texas</option>
@@ -527,8 +584,8 @@
             </select>
           </div>
           <div class="form-group">
-            <label>Capacity (MW)</label>
-            <select>
+            <label for="capacity">Capacity (MW)</label>
+            <select id="capacity">
               <option value="">Select range...</option>
               <option>Under 1 MW</option>
               <option>1 – 5 MW</option>
@@ -539,8 +596,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label>Farm Status</label>
-          <select>
+          <label for="status">Farm Status</label>
+          <select id="status">
             <option value="">Select status...</option>
             <option>Operational &amp; generating revenue</option>
             <option>Operational, pre-revenue</option>
@@ -549,8 +606,8 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Additional Details</label>
-          <textarea placeholder="Tell us about your farm, your timeline, or what you're looking for in an offer..."></textarea>
+          <label for="details">Additional Details</label>
+          <textarea id="details" placeholder="Tell us about your farm, your timeline, or what you're looking for in an offer..."></textarea>
         </div>
         <button type="submit" class="form-submit">Send to Jim &rarr;</button>
       </form>
