@@ -7,8 +7,7 @@
 
 function showPage(id) {
   // Hide all pages
-  var pages = document.querySelectorAll('.page');
-  pages.forEach(function(p) {
+  document.querySelectorAll('.page').forEach(function(p) {
     p.classList.remove('active');
   });
 
@@ -17,43 +16,39 @@ function showPage(id) {
   if (target) target.classList.add('active');
 
   // Update pill nav active state
-  var navLinks = document.querySelectorAll('.nav-center a[id^="nav-"]');
-  navLinks.forEach(function(a) {
+  document.querySelectorAll('.nav-center a').forEach(function(a) {
     a.classList.remove('active');
   });
   var activeNav = document.getElementById('nav-' + id);
   if (activeNav) activeNav.classList.add('active');
 
-  // Close mobile menu
+  // Always close mobile menu on navigation
   closeMobileMenu();
 
-  // Scroll to top instantly
+  // Scroll to top
   window.scrollTo(0, 0);
 
-  // Reset form if navigating away from contact
+  // Reset form if leaving contact page
   if (id !== 'contact') {
     resetForm();
   }
 
-  // Kick off animations for the new page
+  // Trigger animations for new page
   setTimeout(observeAnimations, 80);
 }
 
 
 /* ── MOBILE MENU ───────────────────────────── */
 
-function toggleMobileMenu() {
-  var nav    = document.getElementById('mobileNav');
-  var btn    = document.getElementById('mobileMenuBtn');
-  var isOpen = nav.classList.contains('open');
-
-  if (isOpen) {
-    closeMobileMenu();
-  } else {
-    nav.classList.add('open');
-    btn.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
-  }
+function openMobileMenu() {
+  var nav = document.getElementById('mobileNav');
+  var btn = document.getElementById('mobileMenuBtn');
+  nav.style.display = 'flex';
+  // Force reflow before adding open class so transition fires
+  nav.getBoundingClientRect();
+  nav.classList.add('open');
+  btn.classList.add('open');
+  btn.setAttribute('aria-expanded', 'true');
 }
 
 function closeMobileMenu() {
@@ -62,13 +57,29 @@ function closeMobileMenu() {
   nav.classList.remove('open');
   btn.classList.remove('open');
   btn.setAttribute('aria-expanded', 'false');
+  // Hide after transition completes
+  setTimeout(function() {
+    if (!nav.classList.contains('open')) {
+      nav.style.display = 'none';
+    }
+  }, 320);
 }
 
-// Close mobile menu if user taps outside it
+function toggleMobileMenu() {
+  var nav = document.getElementById('mobileNav');
+  if (nav.classList.contains('open')) {
+    closeMobileMenu();
+  } else {
+    openMobileMenu();
+  }
+}
+
+// Close on outside tap
 document.addEventListener('click', function(e) {
   var nav = document.getElementById('mobileNav');
   var btn = document.getElementById('mobileMenuBtn');
   if (
+    nav &&
     nav.classList.contains('open') &&
     !nav.contains(e.target) &&
     !btn.contains(e.target)
@@ -77,15 +88,19 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// Close mobile menu on resize back to desktop
+// Close on desktop resize
 window.addEventListener('resize', function() {
   if (window.innerWidth > 960) {
-    closeMobileMenu();
+    var nav = document.getElementById('mobileNav');
+    var btn = document.getElementById('mobileMenuBtn');
+    nav.classList.remove('open');
+    btn.classList.remove('open');
+    nav.style.display = 'none';
   }
 });
 
 
-/* ── NAV SCROLL STYLE ──────────────────────── */
+/* ── NAV SCROLL ────────────────────────────── */
 
 window.addEventListener('scroll', function() {
   var navbar = document.getElementById('navbar');
@@ -115,9 +130,7 @@ function observeAnimations() {
 
   els.forEach(function(el, i) {
     var rect = el.getBoundingClientRect();
-    var inView = rect.top < window.innerHeight - 40 && rect.bottom > 0;
-    if (inView) {
-      // Stagger delay capped at 0.4s so last items don't wait too long
+    if (rect.top < window.innerHeight - 40 && rect.bottom > 0) {
       var delay = Math.min(i * 0.07, 0.4);
       el.style.transitionDelay = delay + 's';
       el.classList.add('visible');
@@ -133,21 +146,18 @@ function handleSubmit(e) {
 
   var form    = document.getElementById('contactForm');
   var success = document.getElementById('successMsg');
-
-  // Basic validation
   var firstName = document.getElementById('firstName');
   var email     = document.getElementById('email');
 
-  if (!firstName.value.trim()) {
-    firstName.focus();
+  if (!firstName || !firstName.value.trim()) {
+    if (firstName) firstName.focus();
     return;
   }
-  if (!email.value.trim() || !email.validity.valid) {
-    email.focus();
+  if (!email || !email.value.trim() || !email.validity.valid) {
+    if (email) email.focus();
     return;
   }
 
-  // Hide form, show success
   form.style.display = 'none';
   success.classList.add('show');
 }
@@ -155,37 +165,26 @@ function handleSubmit(e) {
 function resetForm() {
   var form    = document.getElementById('contactForm');
   var success = document.getElementById('successMsg');
-  if (form)    form.style.display = '';
-  if (success) success.classList.remove('show');
-  if (form)    form.reset();
+  if (form)    { form.style.display = ''; form.reset(); }
+  if (success) { success.classList.remove('show'); }
 }
-
-
-/* ── KEYBOARD ACCESSIBILITY ────────────────── */
-
-// Allow Enter/Space to trigger nav links and footer links
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' || e.key === ' ') {
-    var el = e.target;
-    if (el.tagName === 'A' && el.getAttribute('onclick')) {
-      e.preventDefault();
-      el.click();
-    }
-  }
-});
 
 
 /* ── INIT ──────────────────────────────────── */
 
 window.addEventListener('load', function() {
-  // Run animations for above-the-fold elements
-  setTimeout(observeAnimations, 100);
+  // Hide mobile nav by default
+  var nav = document.getElementById('mobileNav');
+  if (nav) nav.style.display = 'none';
 
-  // Set aria attributes on mobile menu button
+  // ARIA on hamburger
   var btn = document.getElementById('mobileMenuBtn');
   if (btn) {
     btn.setAttribute('aria-label', 'Toggle navigation menu');
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-controls', 'mobileNav');
   }
+
+  // Initial animations
+  setTimeout(observeAnimations, 100);
 });
