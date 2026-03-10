@@ -5,16 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Repowering Partners</title>
 <link rel="stylesheet" href="styles.css">
-
-<!--
-  FAVICON
-  The favicon is generated inline as an SVG data URI so no external file is needed.
-  It shows a white lightning bolt on a black circle — matches the brand.
-  If you want to use your own favicon file instead, replace the lines below with:
-  <link rel="icon" type="image/png" href="images/favicon.png">
--->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230a0a0a'/%3E%3Cpolygon points='18,4 10,18 16,18 14,28 22,14 16,14' fill='%23f0f0f0'/%3E%3C/svg%3E">
-<link rel="alternate icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC3SURBVFhH7ZZBCsIwEEX7/06uXHoGD+DCjVsvIFjBpSAiIoiIiIh4ABFRQURERCQ0aaedJpNMIIT+B0NnXl7eZEhFSimllNqY2RUA8EMqZSIAcLc9nAEAt0opJQBIKeUAcLuVEgCklHIAuCillABwuZUSAKSUcgC4KKUEACmlHAAuSikBQEopB4CLUkoAkFLKAeCilBIApJRyALgopQQAKaUcAC5KKQFAVX0AuGEHgLmVUkoppZT6tjeQ1B8cKR8rqAAAAABJRU5ErkJggg==">
 </head>
 <body>
 
@@ -40,11 +31,11 @@
   </div>
 </nav>
 
+<!-- Mobile nav — Home, About, Contact only -->
 <div class="mobile-nav" id="mobileNav">
   <a onclick="showPage('home')">Home</a>
   <a onclick="showPage('about')">About</a>
   <a onclick="showPage('contact')">Contact</a>
-  <a onclick="showPage('contact')" class="mobile-nav-cta">Sell Asset</a>
 </div>
 
 
@@ -104,19 +95,14 @@
   </section>
 
   <!--
-    ══ IMAGE STRIP ══
-    To add your images, find the three .strip-img divs below.
-    Inside each one, uncomment the <img> tag and set src to your file path.
-
-    Example:
-      <img src="images/solar-farm-1.jpg" alt="Utility Scale Solar Farm">
-
-    The placeholder div will automatically hide once an <img> is present.
+    IMAGE STRIP
+    To add your images uncomment each <img> tag and set src to your file.
+    Example: <img src="images/solar-farm-1.jpg" alt="Utility Scale Solar Farm">
   -->
   <div class="hero-image-strip">
 
     <div class="strip-img">
-      <img src="images/there.jpg" alt="Utility Scale Solar Farm">
+      <!-- <img src="images/YOUR-IMAGE-1.jpg" alt="Utility Scale Solar Farm"> -->
       <div class="img-placeholder">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -238,11 +224,6 @@
   <div class="why-section">
     <div class="why-left" data-animate-left>
 
-      <!--
-        WHY SECTION IMAGE
-        Uncomment and set src to your image file.
-        Example: <img src="images/YOUR-IMAGE-4.jpg" alt="Solar Farm">
-      -->
       <div class="why-visual-img">
         <!-- <img src="images/YOUR-IMAGE-4.jpg" alt="Solar Farm"> -->
         <div class="img-placeholder">
@@ -334,7 +315,6 @@
   </div>
 
   <footer>
-    <div class="footer-logo" onclick="showPage('home')">Repowering Partners</div>
     <div class="footer-mid">&copy; 2026 Repowering Partners. All rights reserved.</div>
     <div class="footer-links">
       <a onclick="showPage('home')">Home</a>
@@ -360,11 +340,6 @@
     <p class="about-hero-body">Repowering Partners was founded with one mission: make it effortless for solar farm owners to unlock the value they've built — and put that energy back into the world.</p>
   </div>
 
-  <!--
-    ══ ABOUT IMAGE ROW ══
-    Uncomment each <img> tag and set src to your file.
-    Example: <img src="images/YOUR-IMAGE-5.jpg" alt="Solar Farm Aerial">
-  -->
   <div class="about-img-row">
 
     <div class="about-img-cell">
@@ -460,7 +435,6 @@
   </div>
 
   <footer>
-    <div class="footer-logo" onclick="showPage('home')">Repowering Partners</div>
     <div class="footer-mid">&copy; 2026 Repowering Partners. All rights reserved.</div>
     <div class="footer-links">
       <a onclick="showPage('home')">Home</a>
@@ -625,7 +599,6 @@
   </div>
 
   <footer>
-    <div class="footer-logo" onclick="showPage('home')">Repowering Partners</div>
     <div class="footer-mid">&copy; 2026 Repowering Partners. All rights reserved.</div>
     <div class="footer-links">
       <a onclick="showPage('home')">Home</a>
