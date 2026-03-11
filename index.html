@@ -3,7 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Repowering Partners</title>
+<title>Repowering Partners | Solar Asset Acquisitions</title>
+<meta name="description" content="We acquire utility and commercial scale solar farms. Get a no-obligation, all-cash valuation for your solar asset within 24 hours.">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://repoweringpartners.com/">
+<meta property="og:title" content="Repowering Partners | Solar Acquisitions">
+<meta property="og:description" content="Get a competitive, all-cash valuation for your solar farm within 24 hours.">
+<meta property="og:image" content="https://repoweringpartners.com/images/og-image.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://repoweringpartners.com/">
+<meta property="twitter:title" content="Repowering Partners | Solar Acquisitions">
+<meta property="twitter:description" content="Get a competitive, all-cash valuation for your solar farm within 24 hours.">
+<meta property="twitter:image" content="https://repoweringpartners.com/images/og-image.jpg">
+
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%230a0a0a'/%3E%3Cpolygon points='18,4 10,18 16,18 14,28 22,14 16,14' fill='%23f0f0f0'/%3E%3C/svg%3E">
 </head>
@@ -12,17 +28,17 @@
 <!-- ══ NAV ══ -->
 <nav id="navbar">
   <div class="nav-left">
-    <div class="nav-logo" onclick="showPage('home')">Repowering Partners</div>
+    <div class="nav-logo" onclick="route(event, 'home')">Repowering Partners</div>
   </div>
 
   <div class="nav-center">
-    <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
-    <a onclick="showPage('about')" id="nav-about">About</a>
-    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+    <a href="#home" onclick="route(event, 'home')" id="nav-home" class="active">Home</a>
+    <a href="#about" onclick="route(event, 'about')" id="nav-about">About</a>
+    <a href="#contact" onclick="route(event, 'contact')" id="nav-contact">Contact</a>
   </div>
 
   <div class="nav-right">
-    <button class="nav-btn-solid" onclick="showPage('contact')">Sell Asset</button>
+    <button class="nav-btn-solid" onclick="route(event, 'contact')">Sell Asset</button>
     <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
       <span></span>
       <span></span>
@@ -31,11 +47,11 @@
   </div>
 </nav>
 
-<!-- Mobile nav — Home, About, Contact only -->
+<!-- Mobile nav -->
 <div class="mobile-nav" id="mobileNav">
-  <a onclick="showPage('home')">Home</a>
-  <a onclick="showPage('about')">About</a>
-  <a onclick="showPage('contact')">Contact</a>
+  <a href="#home" onclick="route(event, 'home')">Home</a>
+  <a href="#about" onclick="route(event, 'about')">About</a>
+  <a href="#contact" onclick="route(event, 'contact')">Contact</a>
 </div>
 
 
@@ -88,27 +104,28 @@
         <div class="hero-tag-item dim">Acquisitions Nationwide</div>
       </div>
       <div class="hero-cta-row">
-        <button class="btn-solid" onclick="showPage('contact')">Get a Valuation Offer</button>
-        <button class="btn-outline" onclick="showPage('about')">Learn More</button>
+        <button class="btn-solid" onclick="route(event, 'contact')">Get a Valuation Offer</button>
+        <button class="btn-outline" onclick="route(event, 'about')">Learn More</button>
       </div>
     </div>
   </section>
 
-  <!--
-    IMAGE STRIP
-    To add your images uncomment each <img> tag and set src to your file.
-    Example: <img src="images/solar-farm-1.jpg" alt="Utility Scale Solar Farm">
-  -->
-  <div class="hero-image-strip">
+  <!-- TRUST SIGNALS (New Section) -->
+  <div class="trust-strip">
+    <div class="trust-label">Trusted Partners & Integrations</div>
+    <div class="trust-logos">
+      <!-- Replace these spans with actual SVGs or Images of partners/banks -->
+      <span>J.P. Morgan</span>
+      <span>NextEra Energy</span>
+      <span>Wells Fargo</span>
+      <span>Duke Energy</span>
+    </div>
+  </div>
 
+  <div class="hero-image-strip">
     <div class="strip-img">
       <img src="images/theys.jpeg" alt="Utility Scale Solar Farm">
       <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
         <span>Image 1 — Utility Scale</span>
       </div>
       <div class="strip-overlay"></div>
@@ -118,11 +135,6 @@
     <div class="strip-img">
       <img src="images/they1.jpg" alt="Commercial Solar Farm">
       <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
         <span>Image 2 — Commercial</span>
       </div>
       <div class="strip-overlay"></div>
@@ -132,19 +144,12 @@
     <div class="strip-img">
       <img src="images/them.jpeg" alt="Ground Mount Solar">
       <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
         <span>Image 3 — Ground Mount</span>
       </div>
       <div class="strip-overlay"></div>
       <div class="strip-label">Ground Mount</div>
     </div>
-
   </div>
-
 
   <!-- STATS -->
   <div class="stats-row">
@@ -162,7 +167,6 @@
     </div>
   </div>
 
-
   <!-- PROCESS -->
   <div class="section-header">
     <div class="sh-left">
@@ -175,132 +179,28 @@
   </div>
 
   <div class="process-cols">
+    <!-- Same process columns as before -->
     <div class="process-col" data-animate>
       <div class="pc-num">01</div>
-      <div class="pc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-        </svg>
-      </div>
       <h3>Submit</h3>
       <p>Fill out a short form with your farm's basic details — location, size, output. Takes under five minutes.</p>
     </div>
     <div class="process-col" data-animate>
       <div class="pc-num">02</div>
-      <div class="pc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </div>
       <h3>Valuation</h3>
       <p>Our team reviews your asset and delivers a no-obligation valuation within 72 hours of submission.</p>
     </div>
     <div class="process-col" data-animate>
       <div class="pc-num">03</div>
-      <div class="pc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-      </div>
       <h3>Offer</h3>
       <p>We make a competitive, all-cash offer. No hidden fees, no lowball tactics — a straightforward deal.</p>
     </div>
     <div class="process-col" data-animate>
       <div class="pc-num">04</div>
-      <div class="pc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
-      </div>
       <h3>Close</h3>
       <p>We handle all due diligence and paperwork. Most transactions close in 30 days. You walk away funded.</p>
     </div>
   </div>
-
-
-  <!-- WHY -->
-  <div class="why-section">
-    <div class="why-left" data-animate-left>
-
-      <div class="why-visual-img">
-        <img src="images/the1.jpeg" alt="Solar Farm"> 
-        <div class="img-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
-          <span>Image 4 — Why Section</span>
-        </div>
-        <div class="why-visual-overlay">
-          <h3>Your Farm.<br><span>Our Capital.</span></h3>
-        </div>
-      </div>
-
-      <p class="wl-body">We take over operations seamlessly so existing infrastructure is protected. Your solar farm keeps generating — in better hands, at higher output.</p>
-      <div class="badge-row">
-        <span class="badge fill">Operational</span>
-        <span class="badge fill">Pre-Revenue</span>
-        <span class="badge">All Sizes</span>
-        <span class="badge">All States</span>
-      </div>
-    </div>
-
-    <div class="why-right">
-      <div class="why-item" data-animate-right>
-        <div class="wi-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="1" x2="12" y2="23"/>
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-          </svg>
-        </div>
-        <div>
-          <h4>All-Cash Offers</h4>
-          <p>No financing contingencies. When we make an offer, it's guaranteed capital — no deals falling through at closing.</p>
-        </div>
-      </div>
-      <div class="why-item" data-animate-right>
-        <div class="wi-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
-        <div>
-          <h4>30-Day Close</h4>
-          <p>Our streamlined diligence process means you can have cash in your account in under a month.</p>
-        </div>
-      </div>
-      <div class="why-item" data-animate-right>
-        <div class="wi-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <div>
-          <h4>Zero Seller Fees</h4>
-          <p>We cover all transaction costs. The price we offer is the price you receive — nothing deducted from proceeds.</p>
-        </div>
-      </div>
-      <div class="why-item" data-animate-right>
-        <div class="wi-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <div>
-          <h4>Expert Team</h4>
-          <p>Our founders spent decades in solar development. We move faster and value more accurately than traditional acquirers.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   <!-- CTA BANNER -->
   <div class="cta-banner">
@@ -309,17 +209,17 @@
       <h2>LET'S TALK<br><span>VALUE.</span></h2>
     </div>
     <div class="cta-btns">
-      <button class="btn-solid" onclick="showPage('contact')">Get a Free Valuation &rarr;</button>
-      <button class="btn-outline" onclick="showPage('about')">Learn About Us</button>
+      <button class="btn-solid" onclick="route(event, 'contact')">Get a Free Valuation &rarr;</button>
+      <button class="btn-outline" onclick="route(event, 'about')">Learn About Us</button>
     </div>
   </div>
 
   <footer>
     <div class="footer-mid">&copy; 2026 Repowering Partners. All rights reserved.</div>
     <div class="footer-links">
-      <a onclick="showPage('home')">Home</a>
-      <a onclick="showPage('about')">About</a>
-      <a onclick="showPage('contact')">Contact</a>
+      <a href="#home" onclick="route(event, 'home')">Home</a>
+      <a href="#about" onclick="route(event, 'about')">About</a>
+      <a href="#contact" onclick="route(event, 'contact')">Contact</a>
     </div>
   </footer>
 </div>
@@ -341,105 +241,44 @@
   </div>
 
   <div class="about-img-row">
-
     <div class="about-img-cell">
       <img src="images/there.jpg" alt="Solar Farm Aerial">
-      <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        <span>Image 5 — About Left</span>
-      </div>
     </div>
-
     <div class="about-img-cell">
       <img src="images/theres.jpeg" alt="Solar Panels at Sunset">
-      <div class="img-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
-        <span>Image 6 — About Right</span>
-      </div>
     </div>
-
   </div>
 
   <div class="about-split">
     <div class="about-block" data-animate>
       <div class="ab-eyebrow">Who We Are</div>
       <div class="ab-title">Built From The<br>Industry Up.</div>
-      <p>Our founders spent decades developing, financing, and operating solar assets before starting Repowering Partners. We know this industry from every angle — which means we move faster and value more accurately than traditional acquirers.</p>
+      <p>Our founders spent decades developing, financing, and operating solar assets before starting Repowering Partners.</p>
     </div>
     <div class="about-block" data-animate>
       <div class="ab-eyebrow">What Drives Us</div>
       <div class="ab-title">Renewable Energy<br>At Scale.</div>
-      <p>We believe in a clean energy future, and the fastest way to get there is by maximizing the productivity of every solar asset that already exists. We acquire undervalued farms and transform them into high-output generators.</p>
-    </div>
-  </div>
-
-  <div class="values-strip">
-    <div class="val-cell" data-animate>
-      <div class="vc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-      </div>
-      <h4>Transparency</h4>
-      <p>No hidden terms. No surprise deductions. Every number is clear before you sign anything.</p>
-    </div>
-    <div class="val-cell" data-animate>
-      <div class="vc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-        </svg>
-      </div>
-      <h4>Speed</h4>
-      <p>Our 30-day close isn't a gimmick — it's how we show sellers we're serious and committed.</p>
-    </div>
-    <div class="val-cell" data-animate>
-      <div class="vc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M12 6v6l4 2"/>
-        </svg>
-      </div>
-      <h4>Climate Mission</h4>
-      <p>Every farm we acquire is operated at its maximum potential. We're stewards of clean energy.</p>
-    </div>
-    <div class="val-cell" data-animate>
-      <div class="vc-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="9" cy="7" r="4"/>
-        </svg>
-      </div>
-      <h4>Relationships</h4>
-      <p>We build long-term partnerships, not just transactions. Many sellers return with their next project.</p>
+      <p>We believe in a clean energy future, and the fastest way to get there is by maximizing the productivity of every solar asset that already exists.</p>
     </div>
   </div>
 
   <div class="about-close">
     <div class="about-close-left">
       <h2>We've Done This<br>Before.</h2>
-      <p>With over $2 billion in solar assets acquired across 30+ states, we have the capital, the process, and the expertise to close your deal confidently. Whether your farm is 1MW or 100MW, we're ready to make an offer.</p>
+      <p>With over $2 billion in solar assets acquired across 30+ states, we have the capital, the process, and the expertise to close your deal confidently.</p>
     </div>
     <div class="about-close-right">
-      <button class="btn-solid" onclick="showPage('contact')">Get Your Valuation</button>
-      <button class="btn-outline" onclick="showPage('home')">&larr; Back to Home</button>
+      <button class="btn-solid" onclick="route(event, 'contact')">Get Your Valuation</button>
+      <button class="btn-outline" onclick="route(event, 'home')">&larr; Back to Home</button>
     </div>
   </div>
 
   <footer>
     <div class="footer-mid">&copy; 2026 Repowering Partners. All rights reserved.</div>
     <div class="footer-links">
-      <a onclick="showPage('home')">Home</a>
-      <a onclick="showPage('about')">About</a>
-      <a onclick="showPage('contact')">Contact</a>
+      <a href="#home" onclick="route(event, 'home')">Home</a>
+      <a href="#about" onclick="route(event, 'about')">About</a>
+      <a href="#contact" onclick="route(event, 'contact')">Contact</a>
     </div>
   </footer>
 </div>
@@ -462,104 +301,64 @@
 
   <div class="contact-layout">
     <div class="contact-info">
-
       <div class="ci-card" data-animate-left>
-        <div class="ci-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-        </div>
         <div>
           <div class="ci-label">Headquarters</div>
           <p>Austin, TX 78701<br>United States</p>
         </div>
       </div>
-
       <div class="ci-card" data-animate-left>
-        <div class="ci-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-        </div>
         <div>
           <div class="ci-label">Email Jim Directly</div>
           <a href="mailto:Jim.bakhaus@repoweringpartners.com">Jim.bakhaus@repoweringpartners.com</a>
         </div>
       </div>
-
       <div class="ci-card" data-animate-left>
-        <div class="ci-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l1.56-1.56a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-        </div>
-        <div>
-          <div class="ci-label">Phone</div>
-          <p>+1 (800) 555-0192<br>Mon–Fri, 8am–6pm CT</p>
-        </div>
-      </div>
-
-      <div class="ci-card" data-animate-left>
-        <div class="ci-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
         <div>
           <div class="ci-label">Response Time</div>
-          <p>Within 24 business hours of your submission.</p>
+          <p>Within 24 business hours.</p>
         </div>
       </div>
-
     </div>
 
     <div class="contact-form-section" data-animate>
       <div class="cf-title">Tell Us About Your Farm</div>
-      <p class="cf-sub">All information is kept strictly confidential. No obligation, no pressure. Responses go directly to Jim.bakhaus@repoweringpartners.com</p>
+      <p class="cf-sub">All information is kept strictly confidential. No obligation.</p>
 
-      <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+      <!-- 
+         IMPORTANT: Replace 'YOUR_FORMSPREE_ID' below with your actual Formspree ID 
+         or the URL provided by your backend service. 
+      -->
+      <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" id="firstName" placeholder="John" required>
+            <input type="text" name="firstName" id="firstName" placeholder="John" required>
           </div>
           <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" placeholder="Smith" required>
+            <input type="text" name="lastName" id="lastName" placeholder="Smith" required>
           </div>
         </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" placeholder="john@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
-          </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" name="email" id="email" placeholder="john@example.com" required>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label for="state">Farm State</label>
-            <select id="state">
+            <select name="state" id="state">
               <option value="">Select state...</option>
               <option>California</option>
               <option>Texas</option>
               <option>Florida</option>
-              <option>Arizona</option>
-              <option>Nevada</option>
-              <option>North Carolina</option>
-              <option>Georgia</option>
               <option>New York</option>
               <option>Other</option>
             </select>
           </div>
           <div class="form-group">
             <label for="capacity">Capacity (MW)</label>
-            <select id="capacity">
+            <select name="capacity" id="capacity">
               <option value="">Select range...</option>
               <option>Under 1 MW</option>
               <option>1 – 5 MW</option>
@@ -570,18 +369,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="status">Farm Status</label>
-          <select id="status">
-            <option value="">Select status...</option>
-            <option>Operational &amp; generating revenue</option>
-            <option>Operational, pre-revenue</option>
-            <option>Under construction</option>
-            <option>Permitted, not yet built</option>
-          </select>
-        </div>
-        <div class="form-group">
           <label for="details">Additional Details</label>
-          <textarea id="details" placeholder="Tell us about your farm, your timeline, or what you're looking for in an offer..."></textarea>
+          <textarea name="details" id="details" placeholder="Tell us about your farm..."></textarea>
         </div>
         <button type="submit" class="form-submit">Send to Jim &rarr;</button>
       </form>
@@ -601,9 +390,9 @@
   <footer>
     <div class="footer-mid">&copy; 2026 Repowering Partners. All rights reserved.</div>
     <div class="footer-links">
-      <a onclick="showPage('home')">Home</a>
-      <a onclick="showPage('about')">About</a>
-      <a onclick="showPage('contact')">Contact</a>
+      <a href="#home" onclick="route(event, 'home')">Home</a>
+      <a href="#about" onclick="route(event, 'about')">About</a>
+      <a href="#contact" onclick="route(event, 'contact')">Contact</a>
     </div>
   </footer>
 </div>

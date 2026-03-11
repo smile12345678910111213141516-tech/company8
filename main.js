@@ -1,11 +1,24 @@
 /* ══════════════════════════════════════════════
-   main.js — Repowering Partners
+   main.js — Repowering Partners (Updated)
 ══════════════════════════════════════════════ */
-
 
 /* ── PAGE ROUTING ──────────────────────────── */
 
-function showPage(id) {
+// Handle Browser Back/Forward Buttons
+window.addEventListener('popstate', function() {
+  var pageId = location.hash.replace('#', '') || 'home';
+  renderPage(pageId);
+});
+
+// Handle clicks on internal links
+function route(event, id) {
+  if (event) event.preventDefault();
+  history.pushState(null, null, '#' + id);
+  renderPage(id);
+}
+
+// Logic to switch the view
+function renderPage(id) {
   // Hide all pages
   document.querySelectorAll('.page').forEach(function(p) {
     p.classList.remove('active');
@@ -13,7 +26,12 @@ function showPage(id) {
 
   // Show requested page
   var target = document.getElementById('page-' + id);
-  if (target) target.classList.add('active');
+  if (target) {
+    target.classList.add('active');
+  } else {
+    // If ID not found, default to home
+    document.getElementById('page-home').classList.add('active');
+  }
 
   // Update pill nav active state
   document.querySelectorAll('.nav-center a').forEach(function(a) {
@@ -28,11 +46,6 @@ function showPage(id) {
   // Scroll to top
   window.scrollTo(0, 0);
 
-  // Reset form if leaving contact page
-  if (id !== 'contact') {
-    resetForm();
-  }
-
   // Trigger animations for new page
   setTimeout(observeAnimations, 80);
 }
@@ -44,8 +57,7 @@ function openMobileMenu() {
   var nav = document.getElementById('mobileNav');
   var btn = document.getElementById('mobileMenuBtn');
   nav.style.display = 'flex';
-  // Force reflow before adding open class so transition fires
-  nav.getBoundingClientRect();
+  nav.getBoundingClientRect(); // Force reflow
   nav.classList.add('open');
   btn.classList.add('open');
   btn.setAttribute('aria-expanded', 'true');
@@ -57,7 +69,6 @@ function closeMobileMenu() {
   nav.classList.remove('open');
   btn.classList.remove('open');
   btn.setAttribute('aria-expanded', 'false');
-  // Hide after transition completes
   setTimeout(function() {
     if (!nav.classList.contains('open')) {
       nav.style.display = 'none';
@@ -78,12 +89,7 @@ function toggleMobileMenu() {
 document.addEventListener('click', function(e) {
   var nav = document.getElementById('mobileNav');
   var btn = document.getElementById('mobileMenuBtn');
-  if (
-    nav &&
-    nav.classList.contains('open') &&
-    !nav.contains(e.target) &&
-    !btn.contains(e.target)
-  ) {
+  if (nav && nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
     closeMobileMenu();
   }
 });
@@ -91,16 +97,13 @@ document.addEventListener('click', function(e) {
 // Close on desktop resize
 window.addEventListener('resize', function() {
   if (window.innerWidth > 960) {
-    var nav = document.getElementById('mobileNav');
-    var btn = document.getElementById('mobileMenuBtn');
-    nav.classList.remove('open');
-    btn.classList.remove('open');
-    nav.style.display = 'none';
+    closeMobileMenu();
+    document.getElementById('mobileNav').style.display = 'none';
   }
 });
 
 
-/* ── NAV SCROLL ────────────────────────────── */
+/* ── SCROLL EFFECTS ────────────────────────── */
 
 window.addEventListener('scroll', function() {
   var navbar = document.getElementById('navbar');
@@ -112,9 +115,6 @@ window.addEventListener('scroll', function() {
   observeAnimations();
 }, { passive: true });
 
-
-/* ── SCROLL ANIMATIONS ─────────────────────── */
-
 function currentPageId() {
   var active = document.querySelector('.page.active');
   return active ? active.id.replace('page-', '') : 'home';
@@ -125,7 +125,7 @@ function observeAnimations() {
   if (!pageEl) return;
 
   var els = pageEl.querySelectorAll(
-    '[data-animate]:not(.visible), [data-animate-left]:not(.visible), [data-animate-right]:not(.visible)'
+    '[data-animate]:not(.visible), [data-animate-left]:not(.visible)'
   );
 
   els.forEach(function(el, i) {
@@ -141,50 +141,64 @@ function observeAnimations() {
 
 /* ── CONTACT FORM ──────────────────────────── */
 
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
 
-  var form    = document.getElementById('contactForm');
+  var form = document.getElementById('contactForm');
   var success = document.getElementById('successMsg');
-  var firstName = document.getElementById('firstName');
-  var email     = document.getElementById('email');
-
-  if (!firstName || !firstName.value.trim()) {
-    if (firstName) firstName.focus();
-    return;
-  }
-  if (!email || !email.value.trim() || !email.validity.valid) {
-    if (email) email.focus();
+  
+  // Simple HTML5 validation check
+  if (!form.checkValidity()) {
+    form.reportValidity();
     return;
   }
 
-  form.style.display = 'none';
-  success.classList.add('show');
+  var data = new FormData(form);
+  var action = form.action;
+
+  // Check if Formspree action is set (not placeholder)
+  if (action && !action.includes('YOUR_FORMSPREE_ID')) {
+    try {
+      const response = await fetch(action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      
+      if (response.ok) {
+        showSuccess(form, success);
+      } else {
+        alert("There was a problem submitting your form. Please try again.");
+      }
+    } catch (error) {
+       // Fallback for demo or network error
+       console.error('Submission error:', error);
+       alert("Error connecting to form service.");
+    }
+  } else {
+    // Demo Mode: If no backend is configured, just show success
+    console.log("Demo submission success");
+    showSuccess(form, success);
+  }
 }
 
-function resetForm() {
-  var form    = document.getElementById('contactForm');
-  var success = document.getElementById('successMsg');
-  if (form)    { form.style.display = ''; form.reset(); }
-  if (success) { success.classList.remove('show'); }
+function showSuccess(form, successEl) {
+  form.style.display = 'none';
+  successEl.classList.add('show');
 }
 
 
 /* ── INIT ──────────────────────────────────── */
 
 window.addEventListener('load', function() {
-  // Hide mobile nav by default
+  // 1. Mobile nav setup
   var nav = document.getElementById('mobileNav');
   if (nav) nav.style.display = 'none';
 
-  // ARIA on hamburger
-  var btn = document.getElementById('mobileMenuBtn');
-  if (btn) {
-    btn.setAttribute('aria-label', 'Toggle navigation menu');
-    btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-controls', 'mobileNav');
-  }
+  // 2. Initial Page Load based on URL Hash
+  var initialPage = location.hash.replace('#', '') || 'home';
+  renderPage(initialPage);
 
-  // Initial animations
+  // 3. Initial animations
   setTimeout(observeAnimations, 100);
 });
